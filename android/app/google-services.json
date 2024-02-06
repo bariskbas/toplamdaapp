@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96525456223",
+    "project_id": "toplamda-54eb5",
+    "storage_bucket": "toplamda-54eb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96525456223:android:2e13ee5dc90e5184c8dcea",
+        "android_client_info": {
+          "package_name": "com.toplamda.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmR45tqMuuIMp5DnOzsmwANjhZ6f7U12w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

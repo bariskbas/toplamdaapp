@@ -1,0 +1,1 @@
+D:\TOPLAMDA+\APP\android\app\src\main\kotlin\com\example\xapp\MainActivity.kt

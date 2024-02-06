@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="katman_4" data-name="katman 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="2" y="2" width="2" height="20"/>
+  <rect class="cls-1" x="11" y="11" width="2" height="20" transform="translate(-9 33) rotate(-90)"/>
+  <rect class="cls-1" x="3.5" y="16" width="2.5" height="2"/>
+  <rect class="cls-1" x="8" y="18" width="2" height="2"/>
+  <rect class="cls-1" x="12" y="18" width="2" height="2"/>
+  <rect class="cls-1" x="16" y="18" width="2" height="2"/>
+  <rect class="cls-1" x="20" y="18" width="2" height="2"/>
+  <rect class="cls-1" x="3.5" y="12" width="2.5" height="2"/>
+  <rect class="cls-1" x="3.5" y="8" width="2.5" height="2"/>
+  <rect class="cls-1" x="3.5" y="4" width="2.5" height="2"/>
+  <path class="cls-1" d="m8.98,14.02c-.26,0-.51-.1-.71-.29-.39-.39-.39-1.02,0-1.41l4-4c.39-.39,1.02-.39,1.41,0l1.29,1.29,5.33-5.33c.39-.39,1.02-.39,1.41,0s.39,1.02,0,1.41l-6.04,6.04c-.39.39-1.02.39-1.41,0l-1.29-1.29-3.29,3.29c-.2.2-.45.29-.71.29Z"/>
+</svg>
