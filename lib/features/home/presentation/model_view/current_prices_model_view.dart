@@ -36,6 +36,7 @@ class CurrentPricesModelView extends GetxController {
   RxList<SalesData> chartList = <SalesData>[].obs;
 
   var totalPrice = 0.0;
+  String totalPriceStr = "";
 
   @override
   void onInit() {
@@ -231,7 +232,7 @@ class CurrentPricesModelView extends GetxController {
 
     //Eski yapı
     var sum = (int.parse(buyingPrice.toString().replaceAll(".", "")) * amount);
-     //Eski yapı
+    //Eski yapı
     return noReplace;
   }
 
@@ -356,8 +357,6 @@ class CurrentPricesModelView extends GetxController {
                       userCurrency.assets![i].amount!,
                       currency.buyingPrice,
                     );
-
-                    print("barış" + total.toString());
               }
             }
           }
@@ -413,8 +412,14 @@ class CurrentPricesModelView extends GetxController {
       }
     }
 
-    /*totalPrice = totalPrice + total;
-    print("barış - " + total.toStringAsFixed(0));*/
+    totalPrice = totalPrice + total;
+    final oCcy = new NumberFormat("#,##0.00", "tr_TR");
+    var numberToPriceFormat =
+        oCcy.format(int.parse(totalPrice.toStringAsFixed(0)));
+    totalPriceStr = numberToPriceFormat;
+    //sumList.add(numberToPriceFormat);
+    print("veri alındı" + numberToPriceFormat);
+
     return CurrencyUtils.formatStrings(total.toStringAsFixed(0));
   }
 

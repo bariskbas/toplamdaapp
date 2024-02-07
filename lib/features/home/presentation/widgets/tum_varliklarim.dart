@@ -10,6 +10,7 @@ import 'package:xapp/features/auth/presentation/view/welcome_page.dart';
 import 'package:xapp/features/home/presentation/model_view/current_prices_model_view.dart';
 import 'package:xapp/features/home/presentation/widgets/duzenle_modal.dart';
 import 'package:xapp/features/home/presentation/widgets/expansion_tile_asset.dart';
+import 'package:xapp/features/home/presentation/widgets/expansion_tile_fixed_total.dart';
 
 class TumVarliklarim extends StatelessWidget {
   TumVarliklarim({
@@ -60,19 +61,26 @@ class TumVarliklarim extends StatelessWidget {
                       ? SizedBox(
                           child: SingleChildScrollView(
                             child: Column(
-                              children: List.generate(
-                                currentPricesModelView
-                                    .userCurrency.value.length,
-                                (index) {
-                                  return currentPricesModelView.userCurrency
-                                          .value[index].assets!.isNotEmpty
-                                      ? ExpansionTileAsset(
-                                          userCurrency: currentPricesModelView
-                                              .userCurrency.value[index],
-                                        )
-                                      : Container();
-                                },
-                              ),
+                              children: [
+                                Column(
+                                  children: List.generate(
+                                    currentPricesModelView
+                                        .userCurrency.value.length,
+                                    (index) {
+                                      return currentPricesModelView.userCurrency
+                                              .value[index].assets!.isNotEmpty
+                                          ? ExpansionTileAsset(
+                                              userCurrency:
+                                                  currentPricesModelView
+                                                      .userCurrency
+                                                      .value[index],
+                                            )
+                                          : Container();
+                                    },
+                                  ),
+                                ),
+                                ExpansionTileFixedTotal()
+                              ],
                             ),
                           ),
                         )
