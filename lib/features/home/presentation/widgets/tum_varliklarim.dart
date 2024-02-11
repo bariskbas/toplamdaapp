@@ -11,6 +11,7 @@ import 'package:xapp/features/home/presentation/model_view/current_prices_model_
 import 'package:xapp/features/home/presentation/widgets/duzenle_modal.dart';
 import 'package:xapp/features/home/presentation/widgets/expansion_tile_asset.dart';
 import 'package:xapp/features/home/presentation/widgets/expansion_tile_fixed_total.dart';
+import 'package:xapp/features/home/presentation/widgets/new_tile_asset.dart';
 
 class TumVarliklarim extends StatelessWidget {
   TumVarliklarim({
@@ -69,7 +70,7 @@ class TumVarliklarim extends StatelessWidget {
                                     (index) {
                                       return currentPricesModelView.userCurrency
                                               .value[index].assets!.isNotEmpty
-                                          ? ExpansionTileAsset(
+                                          ? NewTileAsset(
                                               userCurrency:
                                                   currentPricesModelView
                                                       .userCurrency
