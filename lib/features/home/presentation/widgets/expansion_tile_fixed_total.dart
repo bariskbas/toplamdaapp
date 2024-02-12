@@ -10,42 +10,46 @@ class ExpansionTileFixedTotal extends StatelessWidget {
   CurrentPricesModelView currentPricesModelView = Get.find();
   @override
   Widget build(BuildContext context) {
-    return ListTileTheme(
-      dense: true,
-      child: ExpansionTile(
-        initiallyExpanded: true,
-        shape: Border.all(color: Colors.transparent),
-        tilePadding: EdgeInsets.zero,
-        title: Container(
-          width: Get.width,
-          color: Colors.white.withOpacity(0.4),
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Toplam",
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 10,
-                  color: Styles.textColor,
-                ),
-              ),
-              Text(
-                  currentPricesModelView.totalPriceStr.toString() + " ₺",
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 10,
-                    color: Styles.textColor,
-                  ),
-                ),
-            ],
+    return Container(
+      width: Get.width,
+        decoration: BoxDecoration(
+            gradient: new LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.white.withOpacity(0.4),
+                Colors.white.withOpacity(0.4),
+                Colors.white.withOpacity(0.1),
+              ],
+            ),
           ),
-        ),
-        trailing: const SizedBox(),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
+      child: Row(
         children: [
-        
+          Expanded(
+            child: Text(
+              "TOPLAM",
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+                color: Styles.textColor,
+              ),
+            ),
+          ),
+          Expanded(
+            child: SizedBox(),
+          ),
+          Expanded(
+            child: Text(
+              currentPricesModelView.totalPriceStr.toString() + " ₺",
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                color: Styles.textColor,
+              ),
+            ),
+          ),
         ],
       ),
     );

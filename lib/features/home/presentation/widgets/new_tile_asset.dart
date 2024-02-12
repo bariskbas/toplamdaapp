@@ -21,8 +21,18 @@ class NewTileAsset extends StatelessWidget {
       children: [
         Container(
           width: Get.width,
-          color: Colors.white.withOpacity(0.4),
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+          decoration: BoxDecoration(
+            gradient: new LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.white.withOpacity(0.4),
+                Colors.white.withOpacity(0.4),
+                Colors.white.withOpacity(0.1),
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
           child: Text(
             userCurrency!.assetsTitle!,
             overflow: TextOverflow.ellipsis,
@@ -55,7 +65,8 @@ class NewTileAsset extends StatelessWidget {
                     : null;
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: userCurrency!.assets!.length != index
@@ -97,7 +108,7 @@ class NewTileAsset extends StatelessWidget {
                           ),
                         ]
                       : [
-                          Expanded(
+                          /* Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10.0),
                               child: Text(
@@ -121,7 +132,7 @@ class NewTileAsset extends StatelessWidget {
                                 color: Styles.textColor,
                               ),
                             ),
-                          ),
+                          ),*/
                         ],
                 ),
               ),

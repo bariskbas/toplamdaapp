@@ -63,6 +63,36 @@ class TumVarliklarim extends StatelessWidget {
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        '',
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Adet',
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                          color: Styles.textColor,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Fiyat (₺)',
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                          color: Styles.textColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Column(
                                   children: List.generate(
                                     currentPricesModelView
