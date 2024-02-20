@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:xapp/core/dtos/user_currency.dart';
 import 'package:xapp/core/styles.dart';
 import 'package:xapp/core/widgets/confirm_dialog.dart';
@@ -15,8 +16,11 @@ class NewTileAsset extends StatelessWidget {
   final UserCurrency? userCurrency;
   CurrentPricesModelView currentPricesModelView = Get.find();
 
+  final oCcy = new NumberFormat("#,##0.00", "tr_TR");
+
   @override
   Widget build(BuildContext context) {
+    getSumAssets(userCurrency!);
     return Column(
       children: [
         Container(
@@ -37,8 +41,8 @@ class NewTileAsset extends StatelessWidget {
             userCurrency!.assetsTitle!,
             overflow: TextOverflow.ellipsis,
             style: GoogleFonts.montserrat(
-              fontWeight: FontWeight.bold,
-              fontSize: 10,
+              fontWeight: FontWeight.w900,
+              fontSize: 11,
               color: Styles.textColor,
             ),
           ),
@@ -98,7 +102,15 @@ class NewTileAsset extends StatelessWidget {
                           Expanded(
                             flex: 2,
                             child: Text(
-                              userCurrency!.assets![index].price!,
+                              (userCurrency!.assetsTitle.toString() == "KRİPTO"
+                                  ? oCcy.format(int.parse(userCurrency!
+                                      .assets![index].price!
+                                      .replaceAll(".", "")
+                                      .substring(0, 4)))
+                                  : oCcy.format(int.parse(userCurrency!
+                                      .assets![index].price!
+                                      .replaceAll(".", "")
+                                      .substring(0, 4)))),
                               style: GoogleFonts.montserrat(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 10,

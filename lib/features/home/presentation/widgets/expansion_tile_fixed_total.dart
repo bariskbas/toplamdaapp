@@ -31,8 +31,8 @@ class ExpansionTileFixedTotal extends StatelessWidget {
               "TOPLAM",
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.montserrat(
-                fontWeight: FontWeight.bold,
-                fontSize: 10,
+              fontWeight: FontWeight.w900,
+              fontSize: 11,
                 color: Styles.textColor,
               ),
             ),

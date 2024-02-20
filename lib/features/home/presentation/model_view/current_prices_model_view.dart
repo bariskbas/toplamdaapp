@@ -245,9 +245,10 @@ class CurrentPricesModelView extends GetxController {
   }
 
   handleCryptoPrice(val, buyingPrice) {
-    print(val);
-    print(buyingPrice);
-    return (val * double.parse(buyingPrice!));
+    double dolarprice =
+        double.parse(currentAssets[1].currencies![0].buyingPrice.toString());
+    double buyingPriceParse = double.parse(buyingPrice.toString());
+    return (val * (buyingPriceParse * dolarprice));
   }
 
   onSelectedChartAssets(value) {

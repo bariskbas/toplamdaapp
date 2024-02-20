@@ -21,7 +21,6 @@ class AltinModal extends StatelessWidget {
   User? user = FirebaseAuth.instance.currentUser;
 
   final CurrentAssets? currentAssets;
-
   @override
   Widget build(BuildContext context) {
     addAssetsModelView.setCurrentAssets(currentAssets!);
@@ -164,10 +163,8 @@ class AltinModal extends StatelessWidget {
                                   () => !addAssetsModelView.isLoading.value
                                       ? ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-
                                               backgroundColor:
                                                   Styles.neutralsBlue),
-
                                           onPressed: () {
                                             addAssetsModelView.saveAssets();
                                           },
