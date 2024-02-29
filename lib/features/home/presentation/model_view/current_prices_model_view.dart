@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:xapp/core/const.dart';
 import 'package:xapp/core/dtos/currencies.dart';
 import 'package:xapp/core/dtos/user_currency.dart';
 import 'package:xapp/core/repository/all_currency_repository.dart';
@@ -34,6 +35,8 @@ class CurrentPricesModelView extends GetxController {
   Rx<double> percentageGain = 0.0.obs;
   Rx<double> tlGain = 0.0.obs;
   RxList<SalesData> chartList = <SalesData>[].obs;
+
+  Rx<int> allDeteleIcon = 0.obs;
 
   var totalPrice = 0.0;
   String totalPriceStr = "";
@@ -140,6 +143,21 @@ class CurrentPricesModelView extends GetxController {
     });
   }
 
+  varlikArtisHesapla(String varlikTuru, String varlik, String alinanFiyat) {
+    var varlikTuruData =
+        currentAssets.where((p0) => p0.assetsTitle == varlikTuru).toList();
+    var varlikData = varlikTuruData[0]
+        .currencies!
+        .where((element) => element.name == varlik)
+        .first;
+
+    var alisFiyati = double.parse(alinanFiyat);
+    var guncelFiyat = double.parse(varlikData.buyingPrice.toString());
+    return (alisFiyati < guncelFiyat
+        ? AppConst.yukariPiyasaIcon
+        : AppConst.dropdownIcon);
+  }
+
   searchAssets(CurrentAssets currentAsset, String searchTerm) {
     List<Currency> searchList = [];
     if (searchTerm.isNotEmpty) {
@@ -228,7 +246,7 @@ class CurrentPricesModelView extends GetxController {
     var sum2 = oCcy.format(double.parse('$buyingPrice') * amount);
     */
     //düzenlenecek
-    var noReplace = double.parse(buyingPrice) * 5;
+    var noReplace = double.parse(buyingPrice) * amount;
 
     //Eski yapı
     var sum = (int.parse(buyingPrice.toString().replaceAll(".", "")) * amount);

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,13 +46,15 @@ class TumVarliklarim extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+          Container(
+            padding: const EdgeInsets.only(top: 6.0,bottom: 6),
+            margin: EdgeInsets.only(left: 10, right: 10),
             child: Text(
-              "Mevcut varlığı silmek için basılı tutun.",
+              //"Mevcut varlığı silmek için basılı tutun.",
+              "Varlıkları toplu silmek için lütfen çöp kutusuna basılı tutun.",
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w400,
-                fontSize: 12,
+                fontSize: 11,
                 color: Styles.textColor,
               ),
             ),
@@ -66,12 +70,14 @@ class TumVarliklarim extends StatelessWidget {
                                 Row(
                                   children: [
                                     Expanded(
+                                      flex: 2,
                                       child: Text(
                                         '',
                                         textAlign: TextAlign.end,
                                       ),
                                     ),
                                     Expanded(
+                                      flex: 1,
                                       child: Text(
                                         'Adet',
                                         style: GoogleFonts.montserrat(
@@ -82,6 +88,7 @@ class TumVarliklarim extends StatelessWidget {
                                       ),
                                     ),
                                     Expanded(
+                                      flex: 2,
                                       child: Text(
                                         'Fiyat (₺)',
                                         style: GoogleFonts.montserrat(
@@ -91,6 +98,75 @@ class TumVarliklarim extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+                                    Expanded(
+                                        child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          AppConst.duzenleForm,
+                                          color: Color(0xff454b61),
+                                          width: 16,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        GestureDetector(
+                                          onLongPress: () async {
+                                            var deleteData =
+                                                currentPricesModelView
+                                                    .userCurrency
+                                                    .toList();
+                                            for (var datas in deleteData) {
+                                              if (datas.assets?.length != 0) {
+                                                var firebaseData = await datas
+                                                    .assets!
+                                                    .where((element) =>
+                                                        element
+                                                            .deleteIconActive ==
+                                                        1);
+
+                                                for (var firebase
+                                                    in firebaseData) {
+                                                  print(firebase);
+                                                  await currentPricesModelView
+                                                      .firebaseServices
+                                                      .deleteAssets(
+                                                          datas.assetsTitle,
+                                                          firebase);
+                                                }
+
+                                                datas.assets!.removeWhere(
+                                                    (element) =>
+                                                        element
+                                                            .deleteIconActive ==
+                                                        1);
+
+                                                currentPricesModelView
+                                                    .userCurrency
+                                                    .refresh();
+                                                currentPricesModelView
+                                                    .calculateTotalAssets();
+                                              }
+                                            }
+                                          },
+                                          onTap: () {
+                                            if (currentPricesModelView
+                                                    .allDeteleIcon.value ==
+                                                1) {
+                                              currentPricesModelView
+                                                  .allDeteleIcon.value = 0;
+                                            } else {
+                                              currentPricesModelView
+                                                  .allDeteleIcon.value = 1;
+                                            }
+                                          },
+                                          child: SvgPicture.asset(
+                                            AppConst.copKutusuForm,
+                                            color: Color(0xff454b61),
+                                            width: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    )),
                                   ],
                                 ),
                                 Column(

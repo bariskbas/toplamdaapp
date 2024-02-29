@@ -36,14 +36,16 @@ class Assets {
   int? amount;
   String? price;
   String? sumAmount;
+  int? deleteIconActive;
 
-  Assets({this.assetType, this.amount, this.price, this.sumAmount});
+  Assets({this.assetType, this.amount, this.price, this.sumAmount,this.deleteIconActive});
 
   Assets.fromJson(Map<String, dynamic> json) {
     assetType = json['assetType'];
     amount = json['amount'];
     price = json['price'];
     sumAmount = json['sumAmount'];
+    deleteIconActive = 0;
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +54,7 @@ class Assets {
     data['amount'] = amount;
     data['price'] = price;
     data['sumAmount'] = sumAmount;
+    data['deleteIconActive'] = deleteIconActive;
     return data;
   }
 }

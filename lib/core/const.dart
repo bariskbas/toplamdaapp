@@ -41,6 +41,9 @@ class AppConst {
   static String minusIcon = "assets/svg/minus.svg";
   static String gizleIcon = "assets/svg/gizle.svg";
 
+  static String duzenleForm = "assets/svg/duzenle-form.svg";
+  static String copKutusuForm = "assets/svg/cop-kutusu-form.svg";
+
   static const assetsCollections = [
     "DÖVİZ",
     "GOLD",
