@@ -109,7 +109,7 @@ class NewTileAsset extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Container(
-                                      width: 45,
+                                      width: 50,
                                       child: Text(
                                         (userCurrency!.assetsTitle.toString() ==
                                                 "KRİPTO"

@@ -47,7 +47,7 @@ class TumVarliklarim extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.only(top: 6.0,bottom: 6),
+            padding: const EdgeInsets.only(top: 6.0, bottom: 6),
             margin: EdgeInsets.only(left: 10, right: 10),
             child: Text(
               //"Mevcut varlığı silmek için basılı tutun.",
@@ -165,6 +165,17 @@ class TumVarliklarim extends StatelessWidget {
                                             width: 16,
                                           ),
                                         ),
+                                        
+                                          (currentPricesModelView
+                                                    .allDeteleIcon.value ==
+                                                1
+                                            ? SizedBox(width: 5,)
+                                            : SizedBox()),
+                                        (currentPricesModelView
+                                                    .allDeteleIcon.value ==
+                                                1
+                                            ? Text('Sil')
+                                            : SizedBox()),
                                       ],
                                     )),
                                   ],
