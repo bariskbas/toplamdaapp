@@ -179,7 +179,7 @@ class NewTileAsset extends StatelessWidget {
                                               },
                                               child: Container(
                                                 margin:
-                                                    EdgeInsets.only(right: 2),
+                                                    EdgeInsets.only(right: 25),
                                                 decoration: BoxDecoration(
                                                     color: (userCurrency!
                                                                 .assets![index]

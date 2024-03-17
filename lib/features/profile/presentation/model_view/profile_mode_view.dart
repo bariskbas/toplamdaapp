@@ -8,6 +8,9 @@ class ProfileModelView extends GetxController {
   Rx<UserDTO> userDTO = UserDTO().obs;
   final user = FirebaseAuth.instance.currentUser;
 
+  Rx<String> nameSurname = "".obs;
+  Rx<String> email = "".obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -16,6 +19,9 @@ class ProfileModelView extends GetxController {
     }
     super.onInit();
   }
+
+  onChangedNameSurname(val) => nameSurname.value = val;
+  onChangedEmail(val) => email.value = val;
 
   getUserInfo() async {
     userDTO.value = await authServices.getUserInfo();

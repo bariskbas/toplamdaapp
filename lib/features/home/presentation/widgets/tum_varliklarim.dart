@@ -49,6 +49,10 @@ class TumVarliklarim extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 6.0, bottom: 6),
             margin: EdgeInsets.only(left: 10, right: 10),
+          ),
+          /*Container(
+            padding: const EdgeInsets.only(top: 6.0, bottom: 6),
+            margin: EdgeInsets.only(left: 10, right: 10),
             child: Text(
               //"Mevcut varlığı silmek için basılı tutun.",
               "Varlıkları toplu silmek için lütfen çöp kutusuna basılı tutun.",
@@ -58,7 +62,7 @@ class TumVarliklarim extends StatelessWidget {
                 color: Styles.textColor,
               ),
             ),
-          ),
+          ),*/
           user != null
               ? Obx(
                   () => (currentPricesModelView.isLoading.value &&
@@ -101,53 +105,15 @@ class TumVarliklarim extends StatelessWidget {
                                     Expanded(
                                         child: Row(
                                       children: [
-                                        SvgPicture.asset(
+                                        /*SvgPicture.asset(
                                           AppConst.duzenleForm,
                                           color: Color(0xff454b61),
                                           width: 16,
                                         ),
                                         SizedBox(
                                           width: 10,
-                                        ),
+                                        ),*/
                                         GestureDetector(
-                                          onLongPress: () async {
-                                            var deleteData =
-                                                currentPricesModelView
-                                                    .userCurrency
-                                                    .toList();
-                                            for (var datas in deleteData) {
-                                              if (datas.assets?.length != 0) {
-                                                var firebaseData = await datas
-                                                    .assets!
-                                                    .where((element) =>
-                                                        element
-                                                            .deleteIconActive ==
-                                                        1);
-
-                                                for (var firebase
-                                                    in firebaseData) {
-                                                  print(firebase);
-                                                  await currentPricesModelView
-                                                      .firebaseServices
-                                                      .deleteAssets(
-                                                          datas.assetsTitle,
-                                                          firebase);
-                                                }
-
-                                                datas.assets!.removeWhere(
-                                                    (element) =>
-                                                        element
-                                                            .deleteIconActive ==
-                                                        1);
-
-                                                currentPricesModelView
-                                                    .userCurrency
-                                                    .refresh();
-                                                currentPricesModelView
-                                                    .calculateTotalAssets();
-                                              }
-                                            }
-                                          },
                                           onTap: () {
                                             if (currentPricesModelView
                                                     .allDeteleIcon.value ==
@@ -165,16 +131,59 @@ class TumVarliklarim extends StatelessWidget {
                                             width: 16,
                                           ),
                                         ),
-                                        
-                                          (currentPricesModelView
+                                        (currentPricesModelView
                                                     .allDeteleIcon.value ==
                                                 1
-                                            ? SizedBox(width: 5,)
+                                            ? SizedBox(
+                                                width: 5,
+                                              )
                                             : SizedBox()),
                                         (currentPricesModelView
                                                     .allDeteleIcon.value ==
                                                 1
-                                            ? Text('Sil')
+                                            ? GestureDetector(
+                                                onTap: () async {
+                                                  var deleteData =
+                                                      currentPricesModelView
+                                                          .userCurrency
+                                                          .toList();
+                                                  for (var datas
+                                                      in deleteData) {
+                                                    if (datas.assets?.length !=
+                                                        0) {
+                                                      var firebaseData = await datas
+                                                          .assets!
+                                                          .where((element) =>
+                                                              element
+                                                                  .deleteIconActive ==
+                                                              1);
+
+                                                      for (var firebase
+                                                          in firebaseData) {
+                                                        print(firebase);
+                                                        await currentPricesModelView
+                                                            .firebaseServices
+                                                            .deleteAssets(
+                                                                datas
+                                                                    .assetsTitle,
+                                                                firebase);
+                                                      }
+
+                                                      datas.assets!.removeWhere(
+                                                          (element) =>
+                                                              element
+                                                                  .deleteIconActive ==
+                                                              1);
+
+                                                      currentPricesModelView
+                                                          .userCurrency
+                                                          .refresh();
+                                                      currentPricesModelView
+                                                          .calculateTotalAssets();
+                                                    }
+                                                  }
+                                                },
+                                                child: Text('Sil'))
                                             : SizedBox()),
                                       ],
                                     )),
