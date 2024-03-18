@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:xapp/core/dtos/user_dto.dart';
 import 'package:xapp/core/services/auth_services.dart';
 import 'package:xapp/core/styles.dart';
+import 'package:xapp/core/utils/date_formatter.dart';
 import 'package:xapp/core/widgets/app_button.dart';
 import 'package:xapp/core/widgets/custom_textfield.dart';
+import 'package:xapp/core/widgets/phone_number_textfield.dart';
 import 'package:xapp/features/auth/presentation/view/welcome_page.dart';
 import 'package:xapp/features/profile/presentation/model_view/profile_mode_view.dart';
 import 'package:xapp/core/const.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:xapp/features/profile/presentation/view/gender_dropdown_button.dart';
+import 'package:xapp/features/profile/presentation/view/meslek_dropdown_button.dart';
+import 'package:xapp/features/profile/presentation/view/profile_phone_number_textfield.dart';
+import 'package:xapp/features/profile/presentation/view/update_button.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -59,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     () => Expanded(
                       child: Container(
                           width: Get.width,
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(25),
                           child: profileModelView.userDTO.value.nameUsername !=
                                   null
                               ? Column(
@@ -69,8 +76,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       child: Container(
                                         padding: const EdgeInsets.only(
                                             top: 6.0, bottom: 6),
-                                        margin:
-                                            EdgeInsets.only(left: 10, right: 10),
+                                        margin: EdgeInsets.only(
+                                            left: 10, right: 10),
                                         child: Text(
                                           "KULLANICI BİLGİLERİ",
                                           style: GoogleFonts.montserrat(
@@ -82,18 +89,21 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                     Container(
-                                     width:Get.width * 0.5,
+                                      width: Get.width * 0.5,
                                       child: CustomTextfield(
                                         labelStyle: 1,
                                         initialValue: profileModelView
                                             .userDTO.value.nameUsername!,
-                                        onChanged:
-                                            profileModelView.onChangedNameSurname,
+                                        onChanged: profileModelView
+                                            .onChangedNameSurname,
                                         labelText: "*Ad Soyad",
                                       ),
                                     ),
-                                     Container(
-                                     width:Get.width * 0.5,
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                    Container(
+                                      width: Get.width * 0.5,
                                       child: CustomTextfield(
                                         labelStyle: 1,
                                         initialValue: profileModelView
@@ -103,6 +113,90 @@ class _ProfilePageState extends State<ProfilePage> {
                                         labelText: "*E-Posta",
                                       ),
                                     ),
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: Get.width * 0.4,
+                                          child: ProfilePhonenNumberTextfield(
+                                                      onChanged:
+                                            profileModelView.onChangedPhone,
+                                            phone: profileModelView
+                                                .userDTO.value.phone,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Container(
+                                          width: Get.width * 0.4,
+                                          child: CustomTextfield(
+                                            labelStyle: 1,
+                                            format: DateTextFormatter(),
+                                            onChanged: profileModelView
+                                                .onChangedBirthday,
+                                            initialValue: profileModelView
+                                                .userDTO.value.birthday,
+                                            labelText:
+                                                "*Doğum Tarihi (GG/AA/YYYY)",
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: Get.width * 0.4,
+                                          child: ProfileMeslekDropdownButton(
+                                            onChanged: profileModelView
+                                                .onChangedMeslek,
+                                            initialValue: profileModelView
+                                                .userDTO.value.meslek!,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Container(
+                                          width: Get.width * 0.4,
+                                          child: ProfileGenderDropdownButton(
+                                            selectedGender: profileModelView
+                                                 .userDTO.value.gender!,
+                                            onChanged: profileModelView
+                                                .onChangedGender,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                    Center(
+                                      child: ProfileUpdateButton(),
+                                    ),
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          AppConst.unlem,
+                                          color: Colors.orange.shade700,
+                                          cacheColorFilter: true,
+                                        ),
+                                        SizedBox(width: 5,),
+                                        Text(
+                                          "Gerçeği yansıtmayan miktarda, türde ve sıklıkta \nvarlıklar eklenmesinin tespiti halinde hesabı \naskıya alma hakkımızı saklı tutarız.",
+                                          style: GoogleFonts.montserrat(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 11,
+                                            color: Styles.textColor,
+                                          ),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 )
                               : Container()),

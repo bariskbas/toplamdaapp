@@ -3,6 +3,8 @@ class UserDTO {
   String? nameUsername;
   String? birthday;
   String? eMail;
+  String? phone;
+  String? meslek;
 
   UserDTO({this.gender, this.nameUsername, this.birthday, this.eMail});
 
@@ -11,6 +13,8 @@ class UserDTO {
     nameUsername = json['name_username'];
     birthday = json['birthday'];
     eMail = json['e_mail'];
+    phone = json['phone'];
+    meslek = json['Meslek'];
   }
 
   Map<String, dynamic> toJson() {
@@ -19,6 +23,8 @@ class UserDTO {
     data['name_username'] = nameUsername;
     data['birthday'] = birthday;
     data['e_mail'] = eMail;
+    data['phone'] = phone;
+    data['Meslek'] = meslek;
     return data;
   }
 }

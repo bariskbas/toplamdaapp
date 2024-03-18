@@ -43,6 +43,7 @@ class AppConst {
 
   static String duzenleForm = "assets/svg/duzenle-form.svg";
   static String copKutusuForm = "assets/svg/cop-kutusu-form.svg";
+  static String unlem = "assets/svg/unlem.svg";
 
   static const assetsCollections = [
     "DÖVİZ",
