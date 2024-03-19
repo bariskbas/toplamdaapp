@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xapp/core/dtos/user_dto.dart';
 import 'package:xapp/core/services/auth_services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class ProfileModelView extends GetxController {
   final AuthServices authServices = AuthServices();
@@ -45,19 +49,17 @@ class ProfileModelView extends GetxController {
 
   updateUserInFirebase() async {
     try {
-      // Firebase Firestore kullanarak belirli bir kullanıcı belgesini referans alın
+
       final userRef =
           FirebaseFirestore.instance.collection('users').doc(user!.uid);
 
-      // Rx değişkenlerinden değerleri alın
       String nameSurnameValue = nameSurname.value;
       String emailValue = email.value;
       String phoneValue = phone.value;
       String birthdayValue = birthday.value;
       String meslekValue = meslek.value;
       String genderValue = gender.value;
-
-      // Güncellenecek verileri bir harita olarak oluşturun
+      
       Map<String, dynamic> userData = {
         'name_username': nameSurnameValue,
         'e_mail': emailValue,
@@ -67,10 +69,9 @@ class ProfileModelView extends GetxController {
         'gender': genderValue,
       };
 
-      // Firestore'daki belgeyi güncelleyin
       await userRef.update(userData);
       Get.snackbar(
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: Colors.green,
         colorText: Colors.white,
         'Başarılı',
         'Kullanıcı bilgileriniz başarılı bir şekilde güncellenmiştir.',
@@ -80,4 +81,60 @@ class ProfileModelView extends GetxController {
       print('Kullanıcı bilgileri güncelleme hatası: $e');
     }
   }
+
+
+  /*updateUserInFirebase() async {
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        firebase_storage.Reference ref = firebase_storage
+            .FirebaseStorage.instance
+            .ref()
+            .child('user_images')
+            .child('${user!.uid}.jpg');
+
+        await ref.putFile(File(pickedFile.path));
+
+        String imageUrl = await ref.getDownloadURL()
+
+        final userRef =
+            FirebaseFirestore.instance.collection('users').doc(user!.uid);
+
+        String nameSurnameValue = nameSurname.value;
+        String emailValue = email.value;
+        String phoneValue = phone.value;
+        String birthdayValue = birthday.value;
+        String meslekValue = meslek.value;
+        String genderValue = gender.value;
+
+        Map<String, dynamic> userData = {
+          'name_username': nameSurnameValue,
+          'e_mail': emailValue,
+          'phone': phoneValue,
+          'birthday': birthdayValue,
+          'Meslek': meslekValue,
+          'gender': genderValue,
+          'profile_picture':
+              imageUrl,
+        };
+
+        await userRef.update(userData);
+
+        Get.snackbar(
+          backgroundColor: Colors.green.shade700,
+          colorText: Colors.white,
+          'Başarılı',
+          'Kullanıcı bilgileriniz başarılı bir şekilde güncellenmiştir.',
+        );
+
+        print('Kullanıcı bilgileri başarıyla güncellendi.');
+      } else {
+        print('Resim seçilmedi.');
+      }
+    } catch (e) {
+      print('Kullanıcı bilgileri güncelleme hatası: $e');
+    }
+  }*/
 }
