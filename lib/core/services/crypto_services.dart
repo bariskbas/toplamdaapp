@@ -14,4 +14,5 @@ class CryptoServices extends BaseService {
     );
   }
 }
+//geri dönüş datası
 // https://coinicons-api.vercel.app/api/icon/btc
