@@ -263,9 +263,19 @@ class CurrentPricesModelView extends GetxController {
   }
 
   handleCryptoPrice(val, buyingPrice) {
-    double dolarprice =
-        double.parse(currentAssets[2].currencies![0].buyingPrice.toString());
+    CurrentAssets assetsBul =
+        currentAssets.where((p0) => p0.assetsTitle == "DÖVİZ").first;
+
+    var dolariBul =
+        assetsBul.currencies!.where((element) => element.name == "USD").first;
+
+    //doların güncel fiyatı
+    double dolarprice = double.parse(dolariBul.buyingPrice.toString());
+
+
+    //satın alınan fiyat
     double buyingPriceParse = double.parse(buyingPrice.toString());
+    var sonuc = (val * (buyingPriceParse * dolarprice));
     return (val * (buyingPriceParse * dolarprice));
   }
 
