@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class UserDTO {
   String? gender;
   String? nameUsername;
@@ -5,6 +7,9 @@ class UserDTO {
   String? eMail;
   String? phone;
   String? meslek;
+  bool? mobilBildirim;
+  bool? smsBildirim;
+  bool? emailBildirim;
 
   UserDTO({this.gender, this.nameUsername, this.birthday, this.eMail});
 
@@ -15,6 +20,9 @@ class UserDTO {
     eMail = json['e_mail'];
     phone = json['phone'];
     meslek = json['Meslek'];
+    mobilBildirim = json['mobilBildirim'];
+    smsBildirim = json['smsBildirim'];
+    emailBildirim = json['emailBildirim'];
   }
 
   Map<String, dynamic> toJson() {
@@ -25,6 +33,9 @@ class UserDTO {
     data['e_mail'] = eMail;
     data['phone'] = phone;
     data['Meslek'] = meslek;
+    data['mobilBildirim'] = mobilBildirim;
+    data['smsBildirim'] = smsBildirim;
+    data['emailBildirim'] = emailBildirim;
     return data;
   }
 }

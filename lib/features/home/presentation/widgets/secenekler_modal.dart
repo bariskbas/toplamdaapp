@@ -7,6 +7,7 @@ import 'package:xapp/core/const.dart';
 import 'package:xapp/core/services/auth_services.dart';
 import 'package:xapp/core/styles.dart';
 import 'package:xapp/core/widgets/confirm_dialog.dart';
+import 'package:xapp/features/contact_preference/presentation/view/contact_preference_page.dart';
 import 'package:xapp/features/home/presentation/widgets/faq_page.dart';
 import 'package:xapp/features/home/presentation/widgets/gecmisim_page.dart';
 import 'package:xapp/features/home/presentation/widgets/istatistiklar_page.dart';
@@ -31,7 +32,6 @@ class SeceneklerModal extends StatelessWidget {
   final List svgListUnauthorized = [
     AppConst.sssIcon,
     AppConst.destekIcon,
-
   ];
 
   final List labelList = [
@@ -106,6 +106,9 @@ class SeceneklerModal extends StatelessWidget {
                       }
                       if (index == 2) {
                         Get.to(const HistoryPage());
+                      }
+                      if (index == 4) {
+                        Get.to(const ContactPreferencePage());
                       }
                       if (index == 5) {
                         Get.to(const FaqPage());
