@@ -25,6 +25,7 @@ class TumVarliklarim extends StatelessWidget {
       Get.put(CurrentPricesModelView());
   @override
   Widget build(BuildContext context) {
+    currentPricesModelView.totalPrice = 0;
     return Container(
       alignment: Alignment.bottomCenter,
       width: Get.width,

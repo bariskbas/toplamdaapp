@@ -374,7 +374,7 @@ class CurrentPricesModelView extends GetxController {
 
   getTotalAssets(UserCurrency userCurrency) {
     double total = 0.0;
-    totalPrice = 0;
+    //totalPrice = 0;
     for (var currrentAsset in currentAssets) {
       if (currrentAsset.assetsTitle == userCurrency.assetsTitle) {
         if (userCurrency.assetsTitle == "GOLD") {
