@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:xapp/core/const.dart';
@@ -16,6 +17,8 @@ import 'package:xapp/core/utils/currency_utils.dart';
 import 'package:xapp/features/home/presentation/view/home_page.dart';
 
 class CurrentPricesModelView extends GetxController {
+    final formkey = GlobalKey<FormBuilderState>().obs;
+
   final GoldRepository goldRepository = GoldRepository();
   final StockRepository stockRepository = StockRepository();
   final CryptoRepository cryptoRepository = CryptoRepository();
@@ -481,4 +484,7 @@ class CurrentPricesModelView extends GetxController {
       duration: const Duration(seconds: 3),
     ));
   }
+
+
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:xapp/core/dtos/currencies.dart';
@@ -57,9 +58,10 @@ class AddAssetsModelView extends GetxController {
   handleGoldPrice(amount, buyingPrice) {
     final oCcy = new NumberFormat("#,##0.00", "tr_TR");
     selectedCurrencyPrice.value = buyingPrice.toString();
-    var sum = oCcy.format(double.parse(selectedCurrencyPrice.value) * int.parse(amount));
-   //Kaldırıldı
-   /*String sum = formatStrings(
+    var sum = oCcy
+        .format(double.parse(selectedCurrencyPrice.value) * int.parse(amount));
+    //Kaldırıldı
+    /*String sum = formatStrings(
         (int.parse(buyingPrice.toString().replaceAll(".", "")) *
                 int.parse(amount))
             .toString());*/
@@ -198,5 +200,47 @@ class AddAssetsModelView extends GetxController {
       message: title,
       duration: const Duration(seconds: 3),
     ));
+  }
+
+  bitcoinCevirici(String price) {
+    CurrentAssets assetsBul = _currentPricesModelView.currentAssets
+        .where((p0) => p0.assetsTitle == "DÖVİZ")
+        .first;
+    var dolariBul =
+        assetsBul.currencies!.where((element) => element.name == "USD").first;
+
+    //doların güncel fiyatı
+    double dolarprice = double.parse(dolariBul.buyingPrice.toString());
+
+    //double bitcoinPriceInUSD = 0.0005103160425146261;
+    double bitcoinPriceInUSD = double.parse(price);
+    double usdToTryRate = dolarprice;
+    double bitcoinPriceInTRY = bitcoinPriceInUSD * usdToTryRate;
+
+    String formattedBitcoinPriceInTRY =
+        NumberFormat.currency(locale: 'tr_TR', symbol: '₺')
+            .format(bitcoinPriceInTRY);
+    /*
+        print('Bitcoin Değeri (USD): $bitcoinPriceInUSD');
+        print('Bitcoin Değeri (TRY): $formattedBitcoinPriceInTRY');
+    */
+    return formattedBitcoinPriceInTRY;
+  }
+
+  bitcoinEkleCikar(String price, int index, int type) {
+    var oldval = _currentPricesModelView
+        .formkey.value.currentState!.fields['bitcoinValueText$index']!.value;
+    if (oldval != "" && oldval != null) {
+      print(oldval);
+      
+    } else {
+      var prices = bitcoinCevirici(price);
+      _currentPricesModelView
+          .formkey.value.currentState!.fields['bitcoinValueText$index']!
+          .didChange(prices);
+      update(['updatePrice$index']);
+    }
+
+    return "";
   }
 }

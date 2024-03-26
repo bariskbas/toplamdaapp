@@ -7,6 +7,7 @@ import 'package:xapp/core/styles.dart';
 import 'package:xapp/features/home/presentation/model_view/add_assets_model_view.dart';
 import 'package:xapp/features/home/presentation/model_view/current_prices_model_view.dart';
 import 'package:xapp/features/home/presentation/widgets/altin_modal.dart';
+import 'package:xapp/features/home/presentation/widgets/generic_altin_modal.dart';
 
 class DuzenleModal extends StatelessWidget {
   DuzenleModal({
@@ -62,14 +63,26 @@ class DuzenleModal extends StatelessWidget {
                   currentPricesModelView.currentAssets.value.length,
                   (index) => GestureDetector(
                     onTap: () {
-                      showDialog(
-                              context: context,
-                              useSafeArea: true,
-                              builder: (context) => AltinModal(
-                                    currentAssets: currentPricesModelView
-                                        .currentAssets.value[index],
-                                  ))
-                          .then((value) => Get.delete<AddAssetsModelView>());
+                      if (currentPricesModelView.currentAssets.value[index].assetsTitle ==
+                          "KRİPTO") {
+                        showDialog(
+                                context: context,
+                                useSafeArea: true,
+                                builder: (context) => GenericAltinModal(
+                                      currentAssets: currentPricesModelView
+                                          .currentAssets.value[index],
+                                    ))
+                            .then((value) => Get.delete<AddAssetsModelView>());
+                      } else {
+                        showDialog(
+                                context: context,
+                                useSafeArea: true,
+                                builder: (context) => AltinModal(
+                                      currentAssets: currentPricesModelView
+                                          .currentAssets.value[index],
+                                    ))
+                            .then((value) => Get.delete<AddAssetsModelView>());
+                      }
                     },
                     child: Container(
                       height: 40,

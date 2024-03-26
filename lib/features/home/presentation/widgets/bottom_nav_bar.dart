@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:xapp/core/const.dart';
 import 'package:xapp/core/styles.dart';
+import 'package:xapp/features/home/presentation/model_view/add_assets_model_view.dart';
 import 'package:xapp/features/home/presentation/model_view/home_model_view.dart';
 import 'package:xapp/features/home/presentation/widgets/duzenle_modal.dart';
 
@@ -12,6 +13,8 @@ class BottomNavBar extends StatelessWidget {
   });
 
   final HomeModelView homeModelView = Get.put(HomeModelView());
+    AddAssetsModelView addAssetsModelView = Get.put(AddAssetsModelView());
+
   final List svgPath = [
     AppConst.duzenleIcon,
     AppConst.varlikIcon,
