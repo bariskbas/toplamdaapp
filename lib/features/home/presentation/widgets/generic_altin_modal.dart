@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -35,7 +36,7 @@ class GenericAltinModal extends StatelessWidget {
       insetPadding: const EdgeInsets.all(16),
       backgroundColor: Colors.transparent,
       child: Container(
-        height: Get.height * 0.7,
+        height: Get.height * 0.9,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: const Color(0xffEDEDED),
@@ -76,11 +77,11 @@ class GenericAltinModal extends StatelessWidget {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: Get.height * 0.7,
+                  height: Get.height * 0.9,
                   child: Stack(
                     children: [
                       Container(
-                        height: Get.height * 0.7,
+                        height: Get.height * 0.9,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -94,12 +95,12 @@ class GenericAltinModal extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 20),
-                        height: Get.height * 0.7,
+                        height: Get.height * 0.9,
                         width: double.infinity,
                         child: Column(
                           children: [
                             Container(
-                              height: Get.height / 2,
+                              height: Get.height * 0.7,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -122,13 +123,22 @@ class GenericAltinModal extends StatelessWidget {
                                                 horizontal: 12, vertical: 16),
                                             child: Row(
                                               children: [
+                                                Image.asset(
+                                                  AppConst.btcLogo,
+                                                  width: 25,
+                                                  height: 25,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
                                                 Expanded(
                                                   child: Text(
                                                     currency.name!,
                                                     style:
                                                         GoogleFonts.montserrat(
+                                                      color: Styles.textColor,
                                                       fontWeight:
-                                                          FontWeight.w500,
+                                                          FontWeight.bold,
                                                       fontSize: 16,
                                                     ),
                                                   ),
@@ -136,12 +146,28 @@ class GenericAltinModal extends StatelessWidget {
                                                 SizedBox(
                                                   width: 25,
                                                 ),
-                                                Icon(Icons.arrow_back),
+                                                GestureDetector(
+                                                    onTap: () {
+                                                      addAssetsModelView
+                                                          .bitcoinEkleCikar(
+                                                              currency
+                                                                  .sellingPrice!,
+                                                              index,
+                                                              1);
+                                                    },
+                                                    child:
+                                                        Icon(Icons.arrow_back)),
                                                 SizedBox(
                                                   width: 5,
                                                 ),
                                                 GenericAltinModalPrice(
-                                                  price: currentPricesModelView.formkey.value.currentState!.fields['bitcoinValueText$index']?.value,
+                                                  price: currentPricesModelView
+                                                      .formkey
+                                                      .value
+                                                      .currentState!
+                                                      .fields[
+                                                          'bitcoinValueText$index']
+                                                      ?.value,
                                                   index: index,
                                                 ),
                                                 SizedBox(
@@ -167,21 +193,38 @@ class GenericAltinModal extends StatelessWidget {
                                 },
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 10),
                             user != null
                                 ? Obx(
                                     () => !addAssetsModelView.isLoading.value
-                                        ? ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    Styles.neutralsBlue),
-                                            onPressed: () {
-                                              addAssetsModelView.saveAssets();
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              Get.snackbar(
+                                                backgroundColor: Colors.red,
+                                                colorText: Colors.white,
+                                                'Hata',
+                                                'Toplu veri ekleme sırasında chart kısmı güncellenemedi.',
+                                              );
+                                              //addAssetsModelView.saveAssets();
                                             },
-                                            child: const Text(
-                                              "Kaydet",
-                                              style: TextStyle(
-                                                  color: Colors.white),
+                                            child: Container(
+                                              width: 200,
+                                              height: 45,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Styles.neutralsBlue,
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  "Kaydet",
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           )
                                         : SizedBox(

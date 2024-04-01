@@ -230,19 +230,33 @@ class AddAssetsModelView extends GetxController {
   bitcoinEkleCikar(String price, int index, int type) {
     var oldval = _currentPricesModelView
         .formkey.value.currentState!.fields['bitcoinValueText$index']!.value;
-    if (oldval != "" && oldval != null) {
-      print(oldval);
-      int yeniDeger = int.parse(oldval) + 1;
-      _currentPricesModelView
-          .formkey.value.currentState!.fields['bitcoinValueText$index']!
-          .didChange(yeniDeger.toString());
-    } else {
-      _currentPricesModelView
-          .formkey.value.currentState!.fields['bitcoinValueText$index']!
-          .didChange("1");
-      update(['updatePrice$index']);
+    if (type == 2) {
+      if (oldval != "" && oldval != null) {
+        print(oldval);
+        int yeniDeger = int.parse(oldval) + 1;
+        _currentPricesModelView
+            .formkey.value.currentState!.fields['bitcoinValueText$index']!
+            .didChange(yeniDeger.toString());
+      } else {
+        _currentPricesModelView
+            .formkey.value.currentState!.fields['bitcoinValueText$index']!
+            .didChange("1");
+        update(['updatePrice$index']);
+      }
+    } else if (type == 1) {
+      if (oldval != "" && oldval != null) {
+        print(oldval);
+        int yeniDeger = int.parse(oldval) - 1;
+        _currentPricesModelView
+            .formkey.value.currentState!.fields['bitcoinValueText$index']!
+            .didChange(yeniDeger.toString());
+      } else {
+        _currentPricesModelView
+            .formkey.value.currentState!.fields['bitcoinValueText$index']!
+            .didChange("0");
+        update(['updatePrice$index']);
+      }
     }
-
     return "";
   }
 }
