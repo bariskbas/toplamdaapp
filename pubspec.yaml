@@ -92,6 +92,7 @@ flutter:
   assets:
     - assets/svg/
     - assets/png/
+    - assets/kriptoicon/
     - assets/
   #   - images/a_dot_ham.jpeg
 

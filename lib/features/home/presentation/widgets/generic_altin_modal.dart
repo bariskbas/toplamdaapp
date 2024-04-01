@@ -125,7 +125,7 @@ class GenericAltinModal extends StatelessWidget {
                                             child: Row(
                                               children: [
                                                 Image.asset(
-                                                  AppConst.btcLogo,
+                                                  'assets/kriptoicon/'+ currency.name!+'.png',
                                                   width: 25,
                                                   height: 25,
                                                 ),
