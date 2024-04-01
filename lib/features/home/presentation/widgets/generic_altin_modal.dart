@@ -110,6 +110,7 @@ class GenericAltinModal extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   final currency =
                                       currentAssets!.currencies![index];
+                                      
                                   return GetBuilder<AddAssetsModelView>(
                                       id: 'updatePrice$index',
                                       builder: (context) {
