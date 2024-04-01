@@ -232,12 +232,14 @@ class AddAssetsModelView extends GetxController {
         .formkey.value.currentState!.fields['bitcoinValueText$index']!.value;
     if (oldval != "" && oldval != null) {
       print(oldval);
-      
-    } else {
-      var prices = bitcoinCevirici(price);
+      int yeniDeger = int.parse(oldval) + 1;
       _currentPricesModelView
           .formkey.value.currentState!.fields['bitcoinValueText$index']!
-          .didChange(prices);
+          .didChange(yeniDeger.toString());
+    } else {
+      _currentPricesModelView
+          .formkey.value.currentState!.fields['bitcoinValueText$index']!
+          .didChange("1");
       update(['updatePrice$index']);
     }
 

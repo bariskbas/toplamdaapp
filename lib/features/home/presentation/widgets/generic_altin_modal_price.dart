@@ -12,9 +12,11 @@ class GenericAltinModalPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 125,
+      width: 70,
       height: 25,
+      alignment: Alignment.center,
       child: GlobalFormTextField(
+        textAlign: TextAlign.center,
         decoration: InputDecoration(
           border: InputBorder.none,
         ),
