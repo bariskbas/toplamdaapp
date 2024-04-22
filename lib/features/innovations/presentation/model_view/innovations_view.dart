@@ -45,6 +45,7 @@ class InnovationsModelView extends GetxController {
   }
 
   Future getAllCurrency() async {
+    int totalAssets = 0;
     userCurrency.value = await firebaseServices.getAllUserAssets();
 
     userCurrency.refresh();
@@ -57,6 +58,7 @@ class InnovationsModelView extends GetxController {
             'isim': asset.assetType,
             'fiyat': double.parse(asset.price.toString()),
           });
+          totalAssets += 1;
         });
       }
     });
@@ -97,10 +99,10 @@ class InnovationsModelView extends GetxController {
       totalCurrancies += value.currencies!.length;
     });
 
- await emtiaRepository.getEmtiaPrices().then((value) {
+    await emtiaRepository.getEmtiaPrices().then((value) {
       totalCurrancies += value.currencies!.length;
     });
 
-    print(totalCurrancies);
+    print( "$totalAssets / $totalCurrancies" );
   }
 }
