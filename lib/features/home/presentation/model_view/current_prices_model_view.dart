@@ -55,7 +55,7 @@ class CurrentPricesModelView extends GetxController {
       }
     }).then((value) {
       if (user == null) {
-        isLoading.value = true;
+        isLoading.value = true; 
       }
     });
     super.onInit();

@@ -10,7 +10,7 @@ import 'package:xapp/core/widgets/confirm_dialog.dart';
 import 'package:xapp/features/contact_preference/presentation/view/contact_preference_page.dart';
 import 'package:xapp/features/home/presentation/widgets/faq_page.dart';
 import 'package:xapp/features/home/presentation/widgets/gecmisim_page.dart';
-import 'package:xapp/features/home/presentation/widgets/istatistiklar_page.dart';
+import 'package:xapp/features/innovations/presentation/view/innovations_page.dart';
 import 'package:xapp/features/profile/presentation/view/profile_page.dart';
 
 class SeceneklerModal extends StatelessWidget {
@@ -102,7 +102,7 @@ class SeceneklerModal extends StatelessWidget {
                         Get.to(const ProfilePage());
                       }
                       if (index == 1) {
-                        Get.to(const StatisticPage());
+                        Get.to(const InnovationsPage());
                       }
                       if (index == 2) {
                         Get.to(const HistoryPage());

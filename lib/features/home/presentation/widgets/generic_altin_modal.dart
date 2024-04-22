@@ -100,7 +100,7 @@ class GenericAltinModal extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
-                              height: Get.height * 0.7,
+                              height: Get.height * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -110,7 +110,7 @@ class GenericAltinModal extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   final currency =
                                       currentAssets!.currencies![index];
-                                      
+
                                   return GetBuilder<AddAssetsModelView>(
                                       id: 'updatePrice$index',
                                       builder: (context) {
@@ -125,9 +125,21 @@ class GenericAltinModal extends StatelessWidget {
                                             child: Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/kriptoicon/'+ currency.name!+'.png',
+                                                  'assets/kriptoicon/' +
+                                                      currency.name! +
+                                                      '.png',
                                                   width: 25,
                                                   height: 25,
+                                                  errorBuilder: (BuildContext
+                                                          context,
+                                                      Object exception,
+                                                      StackTrace? stackTrace) {
+                                                    return Image.asset(
+                                                      'assets/kriptoicon/noimage.png', // Alternatif resmin yolu
+                                                      width: 25,
+                                                      height: 25,
+                                                    );
+                                                  },
                                                 ),
                                                 SizedBox(
                                                   width: 5,
